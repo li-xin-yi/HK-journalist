@@ -1,0 +1,1 @@
+from hkjournalist.journalist import Journalist

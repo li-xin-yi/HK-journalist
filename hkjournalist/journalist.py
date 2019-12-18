@@ -6,9 +6,11 @@ import matplotlib.pyplot as plt
 import datetime
 from tabulate import tabulate
 from pathlib import Path
+import pkg_resources
 
-tex_config_path = '../config/code_block.tex'
-
+resource_package = __name__
+code_config_path = '/'.join(('configuration', 'code_block.tex'))
+tex_config_path = pkg_resources.resource_filename(resource_package, code_config_path)
 
 class Journalist():
     def __init__(self, template_file=None, fig_width=None, fig_height=None, tmp_path='./temp'):

@@ -1,6 +1,6 @@
 % Report template 
 % Author
-% 2019-12-18
+% 2019-12-19
 
 ### Cover_type
 
@@ -104,5 +104,5 @@ def drop_by_cor(feature_df, threshold=0.9):
 
 ### features_remain_with_thres_as_70
 
-9 Elevation, Aspect, Horizontal_Distance_To_Fire_Points, Hillshade_9am, Hillshade_Noon, Horizontal_Distance_To_Hydrology, Slope, Vertical_Distance_To_Hydrology, Horizontal_Distance_To_Roadways
+9 Aspect, Horizontal_Distance_To_Fire_Points, Vertical_Distance_To_Hydrology, Horizontal_Distance_To_Roadways, Elevation, Slope, Horizontal_Distance_To_Hydrology, Hillshade_9am, Hillshade_Noon
 
