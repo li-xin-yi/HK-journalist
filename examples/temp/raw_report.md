@@ -104,5 +104,5 @@ def drop_by_cor(feature_df, threshold=0.9):
 
 ### features_remain_with_thres_as_70
 
-9 Aspect, Horizontal_Distance_To_Fire_Points, Vertical_Distance_To_Hydrology, Horizontal_Distance_To_Roadways, Elevation, Slope, Horizontal_Distance_To_Hydrology, Hillshade_9am, Hillshade_Noon
+9 Horizontal_Distance_To_Hydrology, Elevation, Vertical_Distance_To_Hydrology, Horizontal_Distance_To_Roadways, Aspect, Hillshade_9am, Horizontal_Distance_To_Fire_Points, Slope, Hillshade_Noon
 

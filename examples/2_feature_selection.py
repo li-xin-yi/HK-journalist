@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from hkjournalist.journalist import Journalist
+from hkjournalist import Journalist
 
 # data from https://www.kaggle.com/c/forest-cover-type-prediction/data
 

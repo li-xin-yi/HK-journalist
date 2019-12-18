@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from hkjournalist.journalist import Journalist
+from hkjournalist import Journalist
 from fbprophet import Prophet
 
 # data and models from fbprophet tutorials https://facebook.github.io/prophet/docs/quick_start.html#python-api
