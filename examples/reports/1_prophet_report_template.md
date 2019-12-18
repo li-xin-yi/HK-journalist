@@ -2,6 +2,8 @@
 % Author
 % {today}
 
+---
+
 ### Data Plot
 
 ![]({data_plot}){{ width=100% }}
