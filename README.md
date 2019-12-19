@@ -108,7 +108,7 @@ reporter.hear(config)
 reporter.report(output_file='big_news.pdf', beamer=True, overwrite=True)
 ```
 
-Report slides shows as below:
+Report slides display as below:
 ![](./demo/big_news.png)
 
 ## I am too lazy to write a `md` template
