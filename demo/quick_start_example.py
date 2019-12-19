@@ -5,7 +5,7 @@ from hkjournalist import Journalist
 
 config = {}
 
-def sin_2x_and_cons_2x(x):
+def sin_2x_and_cos_2x(x):
     y = np.sin(x) * np.sin(x) + np.cos(x) *  np.cos(x)
     return y
 
@@ -14,7 +14,7 @@ y1 = np.sin(x)
 y2 = np.cos(x)
 
 df = pd.DataFrame({'x': x, 'sin(x)': y1, 'cos(x)': y2})
-df['sin(x^2^)+cos(x^2^)'] = sin_2x_and_cons_2x(df['x']).values
+df['sin^2^(x)+cos^2^(x)'] = sin_2x_and_cos_2x(df['x']).values
 df = df.set_index('x')
 
 # plot sine curve as sin_plot
@@ -26,7 +26,7 @@ config['sin_plot'] = ax
 config['sin_table'] = df.sample(5)
 
 # sin_2x_and_cons_2x as sin_func
-config['sin_func'] = sin_2x_and_cons_2x
+config['sin_func'] = sin_2x_and_cos_2x
 
 # HK journalist runs faster than everyone! hear variable and make a report
 reporter = Journalist(template_file='template.md')

@@ -4,15 +4,15 @@
 
 ---
 
-### sine plot
+### Sine Plot
 
 ![]({sin_plot})
 
-### sine table
+### Sine Table
 
 {sin_table}
 
-### sine function
+### Sine Function
 
 ```{{.python}}
 {sin_func}

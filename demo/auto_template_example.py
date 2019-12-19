@@ -3,16 +3,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from hkjournalist import Journalist
 
-sns.set(style="darkgrid")
-
 config = {}
 
 for i in range(1, 4):
     uniform_data = np.random.rand(10, 12)
     plt.figure(figsize=(10, 8))
-    ax = sns.heatmap(uniform_data, cmap='Blues', annot=True)
+    ax = sns.heatmap(uniform_data, cmap='Blues', annot=True, linewidth=.5)
     plt.tight_layout()
-    config[f'plot_{i}'] = ax
+    config[f'Plot_{i}'] = ax
 
 reporter = Journalist(fig_height='80%')
 reporter.hear(config)

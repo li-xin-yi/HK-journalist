@@ -22,7 +22,6 @@ setuptools.setup(
     install_requires = ['tabulate',
                         'pandas',
                         'pandoc',
-                        'inspect',
                         'matplotlib',
                         ]
 )

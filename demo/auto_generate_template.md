@@ -2,15 +2,15 @@
 % Author
 % {today}
 
-### plot_1
+### Plot_1
 
-![]({plot_1}){{ height=80%% }}
+![]({Plot_1}){{ height=80%% }}
 
-### plot_2
+### Plot_2
 
-![]({plot_2}){{ height=80%% }}
+![]({Plot_2}){{ height=80%% }}
 
-### plot_3
+### Plot_3
 
-![]({plot_3}){{ height=80%% }}
+![]({Plot_3}){{ height=80%% }}
 

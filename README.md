@@ -1,27 +1,33 @@
 # HK-journalist: Custom Automatic Report Generator for Python program!
 
-It is a useful Python module, help you generate a small size, pretty report as PDF slides (or any other format documents which human can directly read and hand out) each time after your programs finish. All you need to customize your report is to customize a report template using `MarkDown` with variables name which used in your Python program, and maintain a `dict` to store those variables. Then, A few lines of code added before end of programs can automatically fetch and display them in final report file. Also, code deal with frequent structure/arguments changes or data source changes can benefit from the package if the report can play a role of 'snapshot' (with timestamp) of each code version.
+[![Python Versions](https://img.shields.io/pypi/pyversions/hkjournalist.svg)](https://pypi.org/project/hkjournalist)
+[![PyPI Version](https://img.shields.io/pypi/v/hkjournalist.svg)](https://pypi.org/project/hkjournalist)
+[![License](https://img.shields.io/github/license/li-xin-yi/hk-journalist.svg)](https://github.com/shenweichen/li-xin-yi/blob/master/LICENSE)
+[![code size](https://img.shields.io/github/languages/code-size/li-xin-yi/hk-journalist)]()
+[![panodc](https://img.shields.io/badge/pandoc-v2.2.3-yellow.svg)](https://pandoc.org/)
+[![TeXLive](https://img.shields.io/badge/TeXLive-2018/2019-important.svg)](https://www.tug.org/texlive/)
+![documents status](https://img.shields.io/badge/docs-writing-inactive.svg)
 
-## TOC
-- [HK-journalist: Custom Automatic Report Generator for Python program!](#hk-journalist--custom-automatic-report-generator-for-python-program-)
-  * [Quick Start](#quick-start)
-    + [install](#install)
-    + [Customize your report template](#customize-your-report-template)
-    + [Run a Journalist() in your code to fetch variables](#run-a-journalist---in-your-code-to-fetch-variables)
-    + [Invite a journalist to make a big news report](#invite-a-journalist-to-make-a-big-news-report)
-  * [I am too lazy to write a `md` template](#i-am-too-lazy-to-write-a--md--template)
-  * [More examples and instructions](#more-examples-and-instructions)
-  * [Tips](#tips)
-  * [Prerequirements](#prerequirements)
-  * [README todo list](#readme-todo-list)
 
-[toc]
+It is a light and useful Python module, helping you generate a small size, pretty report as PDF slides (or any other format documents which human can directly read and hand out) each time after your programs finish. All you need to customize your report is to customize a report template using `MarkDown` with variables name which used in your Python program, and maintain a `dict` to store those variables. Then, A few lines of code added before end of programs can automatically fetch and display them in final report file. Also, code deal with frequent structure/arguments changes or data source changes can benefit from the package if the report can play a role of 'snapshot' (with timestamp) of each code version.
+
+## Table of Contents
+- [Quick Start](#quick-start)
+  * [Install](#install)
+  * [Customize your report template](#customize-your-report-template)
+  * [Run a `Journalist()` in your code to fetch variables](#run-a--journalist----in-your-code-to-fetch-variables)
+  * [Invite a journalist to make a big news report](#invite-a-journalist-to-make-a-big-news-report)
+- [I am too lazy to write a `md` template](#i-am-too-lazy-to-write-a--md--template)
+- [More examples and instructions](#more-examples-and-instructions)
+- [Tips](#tips)
+- [Prerequirements](#prerequirements)
+- [README todo list](#readme-todo-list)
 
 ## Quick Start
 
 Before installing `hkjournalist`, please make sure `pandoc` and `pdflatex` are already properly installed in the environment. ([install instruction](#prerequirements))
 
-### install
+### Install
 
 ```
 pip install hkjournalist
@@ -31,7 +37,7 @@ pip install hkjournalist
 
 Write such a `md` file, use a pair of `{}` to wrap every variable which will be assigned specified value in your code. save it to `template.md`
 
-````
+````md
 % Hello World
 % Xinyi Li
 % 2019-12-19
@@ -54,7 +60,7 @@ Write such a `md` file, use a pair of `{}` to wrap every variable which will be 
 
 ````
 
-### Run a Journalist() in your code to fetch variables
+### Run a `Journalist()` in your code to fetch variables
 
 First, you should define a `dict` to record mapping with variable names and their value
 
@@ -67,11 +73,7 @@ config = {}
 
 Then, start your programming, and do not forget to assign value to corresponding variable names in `config`:
 ```py
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-
-def sin_2x_and_cons_2x(x):
+def sin_2x_and_cos_2x(x):
     y = np.sin(x) * np.sin(x) + np.cos(x) *  np.cos(x)
     return y
 
@@ -80,7 +82,7 @@ y1 = np.sin(x)
 y2 = np.cos(x)
 
 df = pd.DataFrame({'x': x, 'sin(x)': y1, 'cos(x)': y2})
-df['sin(x^2^)+cos(x^2^)'] = sin_2x_and_cons_2x(df['x']).values
+df['sin^2^(x)+cos^2^(x)'] = sin_2x_and_cos_2x(df['x']).values
 df = df.set_index('x')
 
 # plot sine curve as sin_plot
@@ -92,7 +94,7 @@ config['sin_plot'] = ax
 config['sin_table'] = df.sample(5)
 
 # sin_2x_and_cons_2x as sin_func
-config['sin_func'] = sin_2x_and_cons_2x
+config['sin_func'] = sin_2x_and_cos_2x
 ```
 
 ### Invite a journalist to make a big news report
@@ -111,7 +113,7 @@ Report slides shows as below:
 
 ## I am too lazy to write a `md` template
 
-If you have too many variables to report, which make write a template a big project, or simply don't want to write a `md` template, **No problem!** `hkjournalist` can generate a report template with each variable on one slide page automatically. With slightly modification or directly used it as a template, you can get your report.
+If you have too many variables to report, which make write a template a big project, or simply don't want to write a `md` template, **No problem!** `hkjournalist` can generate a report template with each variable on one slide page automatically. With slight modification or directly using it as a template, you can get your real report.
 
 **Example**
 
@@ -121,30 +123,28 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from hkjournalist import Journalist
 
-sns.set(style="darkgrid")
-
 config = {}
 
 for i in range(1, 4):
     uniform_data = np.random.rand(10, 12)
     plt.figure(figsize=(10, 8))
-    ax = sns.heatmap(uniform_data, cmap='Blues', annot=True)
+    ax = sns.heatmap(uniform_data, cmap='Blues', annot=True, linewidth=.5)
     plt.tight_layout()
-    config[f'plot_{i}'] = ax
+    config[f'Plot_{i}'] = ax
 
 reporter = Journalist(fig_height='80%')
 reporter.hear(config)
 reporter.generate_template('auto_generate_template.md')
 reporter.report(output_file='auto_report.pdf', beamer=True, overwrite=True)
 ```
-Output (you can also view [raw file](./demo/  auto_report.pdf)):
+Output ([raw file](./demo/auto_report.pdf) ):
 
 ![](./demo/auto_report.png)
 
 ## More examples and instructions
 
 - More complex usages available in [examples](./examples)
-- How to write a complicated slide template using `md`？ See [pandoc tutorials](https://pandoc.org/MANUAL.html#producing-slide-shows-with-pandoc)
+- How to write a sophisticated slides template using `md`？ See [pandoc tutorials](https://pandoc.org/MANUAL.html#producing-slide-shows-with-pandoc)
 
 ## Tips
 
