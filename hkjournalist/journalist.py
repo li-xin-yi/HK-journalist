@@ -49,7 +49,6 @@ class Journalist():
 
             elif callable(report_content):
                 # print function definition on final report
-                print(report_content)
                 config_dict[k] = inspect.getsource(report_content)
                 self.var_type[k] = 'function'
 
