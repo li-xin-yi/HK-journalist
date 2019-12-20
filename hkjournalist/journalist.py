@@ -13,7 +13,20 @@ code_config_path = '/'.join(('configuration', 'code_block.tex'))
 tex_config_path = pkg_resources.resource_filename(resource_package, code_config_path)
 
 class Journalist():
+    """
+    Class to record and generate reports
+    """
     def __init__(self, template_file=None, fig_width=None, fig_height=None, tmp_path='./temp'):
+        """
+        :param template_file: file path of md template
+        :type template_file: str
+        :param fig_width: figure width (percentage of whole page width), prior to `fig_height` settings
+        :type fig_width: None, int
+        :param fig_height: figure height (percentage of whole page width)`
+        :type fig_height: None, int
+        :param tmp_path: temporary directory path to store temporary files (such as figures)
+        :type tmp_path: str
+        """
         self.template_file = template_file
         self.report_config = {'today': datetime.datetime.today().date()}
         self._width = fig_width
@@ -31,6 +44,12 @@ class Journalist():
             self.fig_config = ''
 
     def __preprocess(self, config_dict: dict):
+        """
+        :param config_dict:
+        :type config_dict: dict
+        :return: config dict after pre-processing
+        :rtype: dict
+        """
         for k in config_dict:
             report_content = config_dict[k]
             if isinstance(report_content, pd.DataFrame):
@@ -65,10 +84,29 @@ class Journalist():
         return config_dict
 
     def hear(self, config_dict: dict):
+        """
+        Pass your variables mappings to the reporter
+
+        :param config_dict: variable mappings such as {'var_name':value}
+        :type config_dict: dict
+        :return: None
+        :rtype: None
+        """
         newest_config = self.__preprocess(config_dict)
         self.report_config.update(newest_config)
 
     def generate_template(self, template_file='./template.md'):
+        """Generate a `md` template according to mappings which previously passed to.
+
+        The output template will be structed as each variable on a single slide with variable name as its title
+
+        **Note**：it may overwrite the file with the address
+
+        :param template_file: output template file path
+        :type template_file: str
+        :return: None
+        :rtype: None
+        """
         if self.template_file:
             print('warning: template file was specified before and will be overwritten')
         self.template_file = template_file
@@ -90,6 +128,26 @@ class Journalist():
 
     def report(self, output_file='./final_report.pdf', beamer=True, theme='default', color_theme='seagull',
                use_template_config=False, overwrite=True, aspectratio=43):
+        """
+        Generate final pdf (or other format) report using previously heard config dict
+
+        :param output_file: final output file path
+        :type output_file: str
+        :param beamer: whether the output pdf will be a beamer slides ?
+        :type beamer: bool
+        :param theme: the theme used to create beamer (see https://hartwork.org/beamer-theme-matrix/))
+        :type theme: str
+        :param color_theme: the color theme used to create beamer (see https://hartwork.org/beamer-theme-matrix/)
+        :type color_theme: str
+        :param use_template_config: whether use metadata params of format in your custom template, if false, just use params in this function to produce a report. otherwise, please ref to https://pandoc.org/MANUAL.html to write a fine ``md`` template
+        :type use_template_config: bool
+        :param overwrite: whether use a timestamp of current time as a postfix for the final output filename. if false, a new file will occur every time the method call without overwriting previouly ones.
+        :type overwrite: bool
+        :param aspectratio: aspect ratio of slide page. only valid when `beamer` is turn on and output format is `pdf`
+        :type aspectratio: int
+        :return: filename (when build successfully) or error code (if the method fails)
+        :rtype: str, int
+        """
         raw_file = os.path.join(self.tmp_path, 'raw_report.md')
         report_name, ext = os.path.splitext(output_file)
         tex_command = f'--listings -H {tex_config_path}'
