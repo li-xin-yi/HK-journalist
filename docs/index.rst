@@ -7,8 +7,14 @@ Welcome to HKJournalist's documentation!
 ========================================
 
 .. toctree::
-   :maxdepth: 4
-   :caption: Contents:
+   :maxdepth: 2
+   :caption: Home:
+
+   Quick Start<source/quick-start.md>
+   Auto Generate Template<source/template-generate.md>
+   Tutorial 1: Run a prophet model on time series<source/tutorial_1.md>
+   Tutorial 2: EDA and select feature<source/tutorial_2.md>
+   Modules<source/modules.rst>
 
 
 

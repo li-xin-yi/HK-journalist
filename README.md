@@ -141,6 +141,17 @@ Output ([raw file](./demo/auto_report.pdf) ):
 
 ![](./demo/auto_report.png)
 
+## What will my variables on slides look like?
+
+All variables pass to `Journalist` via `hear` will display as strings just like what their `__str__` method do.
+
+Except for 4 types with special support:
+
+- `pandas.DataFrame`: -> a 3-line table (`TeX` default style)
+- `matplotlib.axes.SubplotBase` (known as base figure object `ax` in `matplotlib`):  -> a figure print on report (with high quality and small size as `pdf`)
+- `function`: -> its full definition
+- `list(str)`: -> `len(list)` followed by a sentance with all words concatenated.
+
 ## More examples and instructions
 
 - [Documents](https://hk-journalist.readthedocs.io/)
@@ -162,8 +173,3 @@ Output ([raw file](./demo/auto_report.pdf) ):
 And if you use some IDE like PyCharm, you need to add their path (use `which tex` and `which pandoc` in bash environment to find them) to environment variables `$PATH` in IDE run options. (e.g. in Pycharm,`run`-> `edit configuration` -> `environment variables`)
 
 For [Jupyter Notebook](https://jupyter.org/) users, final output file may not be opened on Chrome (see [this question](https://stackoverflow.com/questions/55251691/how-to-open-pdf-file-in-jupyter-file-browser)). So, for convenience, you can download [Firefox](https://www.mozilla.org/en-US/firefox/new/) to write notebooks and view pdf reports right after generating.
-
-## README todo list
-
-- [ ] support types demonstrate
-- [ ] documents of each method
