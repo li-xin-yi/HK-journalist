@@ -18,10 +18,10 @@ It is a light and useful Python module, helping you generate a small size, prett
   * [Run a `Journalist()` in your code to fetch variables](#run-a--journalist----in-your-code-to-fetch-variables)
   * [Invite a journalist to make a big news report](#invite-a-journalist-to-make-a-big-news-report)
 - [I am too lazy to write a `md` template](#i-am-too-lazy-to-write-a--md--template)
+- [What will my variables on slides look like?](#what-will-my-variables-on-slides-look-like-)
 - [More examples and instructions](#more-examples-and-instructions)
 - [Tips](#tips)
 - [Prerequirements](#prerequirements)
-- [README todo list](#readme-todo-list)
 
 ## Quick Start
 
