@@ -4,6 +4,7 @@ import matplotlib
 import inspect
 import matplotlib.pyplot as plt
 import datetime
+import collections
 from tabulate import tabulate
 from pathlib import Path
 import pkg_resources
@@ -12,10 +13,12 @@ resource_package = __name__
 code_config_path = '/'.join(('configuration', 'code_block.tex'))
 tex_config_path = pkg_resources.resource_filename(resource_package, code_config_path)
 
+
 class Journalist():
     """
     Class to record and generate reports
     """
+
     def __init__(self, template_file=None, fig_width=None, fig_height=None, tmp_path='./temp'):
         """
         :param template_file: file path of md template
@@ -51,7 +54,7 @@ class Journalist():
         :rtype: dict
         """
         applied_config_dict = config_dict.copy()
-        for k,report_content in config_dict.items():
+        for k, report_content in config_dict.items():
             if isinstance(report_content, pd.DataFrame):
                 # transform into a string with markdown table format,
                 applied_config_dict[k] = tabulate(report_content.round(2), tablefmt='github', headers='keys')
@@ -76,7 +79,8 @@ class Journalist():
                 applied_config_dict[k] = str(len(report_content)) + ' ' + ', '.join(report_content)
                 self.var_type[k] = 'list(str)'
 
-            elif isinstance(report_content, list) and all(isinstance(s, matplotlib.axes.SubplotBase) for s in report_content):
+            elif isinstance(report_content, collections.Iterable) and all(
+                    isinstance(s, matplotlib.axes.SubplotBase) for s in report_content):
                 # plot last ax
                 fig_file = os.path.join(self.tmp_path, f'figure_{self.fig_counters}.pdf')
                 self.fig_counters += 1
@@ -85,9 +89,13 @@ class Journalist():
                 applied_config_dict[k] = fig_file
                 self.var_type[k] = 'figure'
 
+            elif isinstance(report_content, pd.Series):
+                applied_config_dict[k] = str(report_content).replace('\n', '\n\n')
+                self.var_type[k] = 'series'
+
             else:
                 # otherwise: leave it as origin format (use its own str method)
-                applied_config_dict[k] = str(report_content).replace('\n', '\n\n')
+                applied_config_dict[k] = report_content
                 self.var_type[k] = 'other'
 
         return applied_config_dict
