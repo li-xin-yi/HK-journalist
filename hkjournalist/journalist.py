@@ -50,11 +50,11 @@ class Journalist():
         :return: config dict after pre-processing
         :rtype: dict
         """
-        for k in config_dict:
-            report_content = config_dict[k]
+        applied_config_dict = config_dict.copy()
+        for k,report_content in config_dict.items():
             if isinstance(report_content, pd.DataFrame):
                 # transform into a string with markdown table format,
-                config_dict[k] = tabulate(report_content.round(2), tablefmt='github', headers='keys')
+                applied_config_dict[k] = tabulate(report_content.round(2), tablefmt='github', headers='keys')
                 self.var_type[k] = 'table'
 
             elif isinstance(report_content, matplotlib.axes.SubplotBase):
@@ -63,25 +63,34 @@ class Journalist():
                 self.fig_counters += 1
                 ax = report_content.get_figure()
                 ax.savefig(fig_file)
-                config_dict[k] = fig_file
+                applied_config_dict[k] = fig_file
                 self.var_type[k] = 'figure'
 
             elif callable(report_content):
                 # print function definition on final report
-                config_dict[k] = inspect.getsource(report_content)
+                applied_config_dict[k] = inspect.getsource(report_content)
                 self.var_type[k] = 'function'
 
             elif isinstance(report_content, list) and all(isinstance(s, str) for s in report_content):
                 # concatenate all words into a sentence
-                config_dict[k] = str(len(report_content)) + ' ' + ', '.join(report_content)
+                applied_config_dict[k] = str(len(report_content)) + ' ' + ', '.join(report_content)
                 self.var_type[k] = 'list(str)'
+
+            elif isinstance(report_content, list) and all(isinstance(s, matplotlib.axes.SubplotBase) for s in report_content):
+                # plot last ax
+                fig_file = os.path.join(self.tmp_path, f'figure_{self.fig_counters}.pdf')
+                self.fig_counters += 1
+                ax = report_content[-1].get_figure()
+                ax.savefig(fig_file)
+                applied_config_dict[k] = fig_file
+                self.var_type[k] = 'figure'
 
             else:
                 # otherwise: leave it as origin format (use its own str method)
-                config_dict[k] = str(report_content).replace('\n', '\n\n')
+                applied_config_dict[k] = str(report_content).replace('\n', '\n\n')
                 self.var_type[k] = 'other'
 
-        return config_dict
+        return applied_config_dict
 
     def hear(self, config_dict: dict):
         """

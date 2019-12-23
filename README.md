@@ -6,10 +6,10 @@
 [![code size](https://img.shields.io/github/languages/code-size/li-xin-yi/hk-journalist)]()
 [![panodc](https://img.shields.io/badge/pandoc-v2.2.3-yellow.svg)](https://pandoc.org/)
 [![TeXLive](https://img.shields.io/badge/TeXLive-2018/2019-important.svg)](https://www.tug.org/texlive/)
-[![documents status](https://img.shields.io/readthedocs/hk-journalist)](https://hk-journalist.readthedocs.io/)
+[![documents status](https://img.shields.io/readthedocs/hk-journalist)](https://hk-journalist.readthedocs.io/)
 
 
-It is a light and useful Python module, helping you generate a small size, pretty report as PDF slides (or any other format documents which human can directly read and hand out) each time after your programs finish. All you need to customize your report is to customize a report template using `MarkDown` with variables name which used in your Python program, and maintain a `dict` to store those variables. Then, A few lines of code added before end of programs can automatically fetch and display them in final report file. Also, code deal with frequent structure/arguments changes or data source changes can benefit from the package if the report can play a role of 'snapshot' (with timestamp) of each code version.
+It is a light and useful Python module, helping you generate a small size, pretty report as PDF slides (or any other format documents which human can directly read and hand out) each time after your programs finish. All you need to do is to customize a report template using `MarkDown` with variables name which used in your Python program, and maintain a `dict` to store those variables. Then, A few lines of code added before end of programs can automatically fetch and display them in final report file. Also, code deal with frequent structure/arguments changes or data source changes can benefit from the package if the report can play a role of 'snapshot' (with timestamp) of each code version.
 
 ## Table of Contents
 - [Quick Start](#quick-start)
@@ -143,12 +143,12 @@ Output ([raw file](./demo/auto_report.pdf) ):
 
 ## What will my variables on slides look like?
 
-All variables pass to `Journalist` via `hear` will display as strings just like what their `__str__` method do.
+All variables pass to `Journalist` via `hear` will display as strings just like what their `__str__` method do.
 
 Except for 4 types with special support:
 
 - `pandas.DataFrame`: -> a 3-line table (`TeX` default style)
-- `matplotlib.axes.SubplotBase` (known as base figure object `ax` in `matplotlib`):  -> a figure print on report (with high quality and small size as `pdf`)
+- `matplotlib.axes.SubplotBase` (known as base figure object `ax` in `matplotlib`):  -> a figure print on report (with high quality and small size as `pdf`)
 - `function`: -> its full definition
 - `list(str)`: -> `len(list)` followed by a sentance with all words concatenated.
 
