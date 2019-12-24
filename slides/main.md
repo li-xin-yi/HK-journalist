@@ -47,18 +47,30 @@ reporter.report(output_file='output.pdf',beamer=True)
 
 ## Display support for special types:
 
-- `pandas.DataFrame`: $\to$ 3-line table (if numeric, round to `{.2f}`)
-- `matplotlib.axes.SubplotBase`:
-  1. save into a `pdf` standalone file in temp directory
-  2. use `![]({var_name})` in template for referring
-  3. runtime change as `![](../tmp/xxx.pdf)`
-  4. **Note:** before assigning it to `dict`, use
+`pandas.DataFrame`
+
+: $\to$ 3-line table (if numeric, round to `{.2f}`)
+
+`matplotlib.axes.SubplotBase`
+
+: $\to$
+
+    1. save into a `pdf` standalone file in temp directory
+    2. use `![]({var_name})` in template for referring
+    3. runtime change as `![](../tmp/xxx.pdf)`
+    4. **Note:** before assigning it to `dict`, use
   ```{.python}
   plt.tight_layout()
   ```
   for better performance.
-- `functions`: print its definition
-- `list(str)`: concatenate into a sentance, following its length (e.g. show features list)
+
+`function`
+
+: print its definition
+
+`list(str)`
+
+: concatenate into a sentance, following its length (e.g. show features list)
 
 ## Install
 
@@ -110,7 +122,9 @@ pip install hkjournalist
 {sin_func}
 ```
 ````
-- **Note**: use `{{}}` to escape `{}`
+**Note**
+
+: use `{{}}` to escape `{}`
 :::
 ::::::::::::::
 
@@ -138,7 +152,7 @@ config['sin_plot'] = ax
 
 # random select 5 point (x,y) as sin_table
 config['sin_table'] = df.sample(5)
-# sin_2x_and_cons_2x as sin_func
+# sin_2x_and_cos_2x as sin_func
 config['sin_func'] = sin_2x_and_cos_2x
 
 # HK journalist runs faster than everyone! hear variables and make a big report
@@ -153,17 +167,40 @@ reporter.report(output_file='big_news.pdf', beamer=True, overwrite=True)
 
 ## Features
 
-**Snapshot**
+### Snapshot
+
 ```{.python}
 Journalist.report(overwrite=False)
 ```
+
 - it is why use `.pdf` instead of `.html` or raw `.md`
 - add a timestamp at the end of output filename, such as `1_prophet_report_2019-12-18_22:06:18.pdf`
 
-**Generate Template**
+### Generate Template
+
 ```{.python}
 Journalist.generate_template()
 ```
+
 - after `hear` method
-- generate template with **each** variable on subsection/slide page according its type: `var_name` as title, `value` as page content
+- generate template with **each** variable on subsection/slide page according its type:
+  - `var_name` as *title*, `value` as *page content*
 - slight modification for usage
+
+## References
+
+GitHub
+
+: https://github.com/li-xin-yi/HK-journalist
+
+Documents
+
+: https://hk-journalist.readthedocs.io/en/latest/
+
+Introduction
+
+: https://zhuanlan.zhihu.com/p/98708920 (Chinese)
+
+Writing `md`
+
+: https://pandoc.org/MANUAL.html

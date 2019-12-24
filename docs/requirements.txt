@@ -1,1 +1,4 @@
-pandoc
+pandas
+matplotlib
+tabulate
+pkg_resources

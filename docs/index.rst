@@ -30,7 +30,7 @@ It is a light and useful Python module, helping you generate a small size, prett
    Auto Generate Template<source/template-generate.md>
    Tutorial 1: Run a prophet model on time series<source/tutorial_1.md>
    Tutorial 2: EDA and select feature<source/tutorial_2.md>
-   Modules<source/modules.rst>
+   API<source/hkjournalist.rst>
 
 
 

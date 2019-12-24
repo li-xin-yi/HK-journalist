@@ -11,6 +11,9 @@
 
 It is a light and useful Python module, helping you generate a small size, pretty report as PDF slides (or any other format documents which human can directly read and hand out) each time after your programs finish. All you need to do is to customize a report template using `MarkDown` with variables name which used in your Python program, and maintain a `dict` to store those variables. Then, A few lines of code added before end of programs can automatically fetch and display them in final report file. Also, code deal with frequent structure/arguments changes or data source changes can benefit from the package if the report can play a role of 'snapshot' (with timestamp) of each code version.
 
+- Documents: https://hk-journalist.readthedocs.io/en/latest/index.html
+- Slides for sharing: [slides](./slides/slides.pdf)
+
 ## Table of Contents
 - [Quick Start](#quick-start)
   * [Install](#install)
@@ -93,7 +96,7 @@ config['sin_plot'] = ax
 # random select 5 point (x,y) as sin_table
 config['sin_table'] = df.sample(5)
 
-# sin_2x_and_cons_2x as sin_func
+# sin_2x_and_cos_2x as sin_func
 config['sin_func'] = sin_2x_and_cos_2x
 ```
 
