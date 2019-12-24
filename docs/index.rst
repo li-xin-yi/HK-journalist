@@ -15,7 +15,7 @@ Welcome to HKJournalist's documentation!
 .. _PyPI_Version: https://pypi.org/project/hkjournalist
 
 .. |GitHub| image:: https://img.shields.io/github/forks/li-xin-yi/hk-journalist?style=social.svg
-.. _GitHub: https://github.com/li-xin-yi/hkjournalist/fork
+.. _GitHub: https://github.com/li-xin-yi/hk-journalist/fork
 
 .. |TexLive| image:: https://img.shields.io/badge/TeXLive-2018/2019-important.svg
 .. _TexLive: https://www.tug.org/texlive/
