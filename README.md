@@ -3,10 +3,12 @@
 [![Python Versions](https://img.shields.io/pypi/pyversions/hkjournalist.svg)](https://pypi.org/project/hkjournalist)
 [![PyPI Version](https://img.shields.io/pypi/v/hkjournalist.svg)](https://pypi.org/project/hkjournalist)
 [![License](https://img.shields.io/github/license/li-xin-yi/hk-journalist.svg)](https://github.com/shenweichen/li-xin-yi/blob/master/LICENSE)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/hkjournalist)](https://pypi.org/project/hkjournalist)
 [![code size](https://img.shields.io/github/languages/code-size/li-xin-yi/hk-journalist)]()
 [![panodc](https://img.shields.io/badge/pandoc-v2.2.3-yellow.svg)](https://pandoc.org/)
 [![TeXLive](https://img.shields.io/badge/TeXLive-2018/2019-important.svg)](https://www.tug.org/texlive/)
 [![documents status](https://img.shields.io/readthedocs/hk-journalist)](https://hk-journalist.readthedocs.io/)
+
 
 
 It is a light and useful Python module, helping you generate a small size, pretty report as PDF slides (or any other format documents which human can directly read and hand out) each time after your programs finish. All you need to do is to customize a report template using `MarkDown` with variables name which used in your Python program, and maintain a `dict` to store those variables. Then, A few lines of code added before end of programs can automatically fetch and display them in final report file. Also, code deal with frequent structure/arguments changes or data source changes can benefit from the package if the report can play a role of 'snapshot' (with timestamp) of each code version.

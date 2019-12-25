@@ -6,11 +6,11 @@ date: \today{}
 aspectratio: 169
 ---
 
-## Basic Idea {.fragile}
+## Basic Idea
 
 **Template**
 
-- Write a `.md` report with `{var_name}` placeholders instead of real values in some critical place
+- Write a `.md` report with `{var_name}` placeholders instead of real values in some critical places
 
 **Python Runtime**
 
@@ -23,7 +23,7 @@ config = {'var_name': value}
 - Read `.md` template and fill in real value bound with `var_name`
 
 ```{.python}
-report_template_text = open('template.md'.'r').read()
+report_template_text = open('template.md','r').read()
 Path('raw_report.md').write_text(report_template_text.format(**config))
 ```
 
@@ -45,7 +45,7 @@ reporter.hear(config)
 reporter.report(output_file='output.pdf',beamer=True)
 ```
 
-## Display support for special types:
+## Display support for special types
 
 `pandas.DataFrame`
 

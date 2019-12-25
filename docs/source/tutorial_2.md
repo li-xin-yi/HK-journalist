@@ -67,6 +67,6 @@ report_journalist.report('./reports/2_feature_select.pdf', overwrite=True, beame
 
 ## Output
 
-raw file: [./reports/2_feature_select.pd](https://github.com/li-xin-yi/HK-journalist/blob/master/examples/reports/2_feature_select.pdf)
+raw file: [./reports/2_feature_select.pdf](https://github.com/li-xin-yi/HK-journalist/blob/master/examples/reports/2_feature_select.pdf)
 
 ![](./pic/toturial_2_output.png)
