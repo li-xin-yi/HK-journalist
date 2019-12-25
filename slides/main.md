@@ -17,7 +17,7 @@ aspectratio: 169
 - Maintain a global `dict` variable `config` to fetch mappings in time
 
 ```{.python}
-config = {'var_name':value}
+config = {'var_name': value}
 ```
 
 - Read `.md` template and fill in real value bound with `var_name`
@@ -76,8 +76,13 @@ reporter.report(output_file='output.pdf',beamer=True)
 
 **Pre-requirements**
 
-1. Pandoc: https://pandoc.org/installing.html
-2. pdfLaTeX: integrated in [TeXLive](https://www.tug.org/texlive/) and [MacTeX](http://www.tug.org/mactex/) for MacOS users.
+Pandoc
+
+: https://pandoc.org/installing.html
+
+pdfLaTeX
+
+: integrated in [TeXLive](https://www.tug.org/texlive/) (and [MacTeX](http://www.tug.org/mactex/) for MacOS users).
 
 **Make sure your environment variables set properly.**
 
@@ -201,6 +206,6 @@ Introduction
 
 : https://zhuanlan.zhihu.com/p/98708920 (Chinese)
 
-Writing `md`
+Write Guide
 
 : https://pandoc.org/MANUAL.html
