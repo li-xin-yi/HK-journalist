@@ -1,6 +1,6 @@
 ---
 title: HKJournalist Module
-subtitle: A Custom Automatic Report Generator for Python program
+subtitle: A Custom Automatic Report Generator for Python Programs
 author: Xinyi Li
 date: \today{}
 aspectratio: 169
