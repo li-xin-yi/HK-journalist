@@ -112,7 +112,8 @@ class Journalist():
         newest_config = self.__preprocess(config_dict)
         self.report_config.update(newest_config)
 
-    def generate_template(self, template_file='./template.md'):
+    def generate_template(self, template_file='./template.md',title='template',author='Author',append=False):
+
         """Generate a `md` template according to mappings which previously passed to.
 
         The output template will be structed as each variable on a single slide with variable name as its title
@@ -123,11 +124,23 @@ class Journalist():
         :type template_file: str
         :return: None
         :rtype: None
+        :param title: report title
+        :type title: str
+        :param author: author name
+        :type author: str
+        :param append: If use append mode to add new contents of report
+        :type append: bool
+        :return:
         """
-        if self.template_file:
+        if self.template_file and not append:
             print('warning: template file was specified before and will be overwritten')
+
         self.template_file = template_file
-        report_text = '% Report template \n% Author\n% {today}\n\n'
+        if append:
+            report_text = open(self.template_file).read() + '\n'
+        else:
+            report_text = f'% {title} \n% {author} \n% {{today}}\n\n'
+
         for k, v in self.var_type.items():
             k_name = '{' + k + '}'
             title = f"### {k}\n\n"
