@@ -19,7 +19,7 @@ class Journalist():
     Class to record and generate reports
     """
 
-    def __init__(self, template_file=None, fig_width=None, fig_height=None, tmp_path='./temp'):
+    def __init__(self, template_file=None, fig_width=None, fig_height=None, tmp_path='./temp', zh=False):
         """
         :param template_file: file path of md template
         :type template_file: str
@@ -29,14 +29,17 @@ class Journalist():
         :type fig_height: None, int
         :param tmp_path: temporary directory path to store temporary files (such as figures)
         :type tmp_path: str
+        :param zh: if it supports chinese (zh_CN) usage
+        :type zh: bool
         """
         self.template_file = template_file
-        self.report_config = {'today': datetime.datetime.today().date()}
         self._width = fig_width
         self._height = fig_height
         self.var_type = {}
         self.fig_counters = 0
         self.tmp_path = tmp_path
+        self.report_config = {}
+        self.zh = zh
         if not os.path.exists(tmp_path):
             os.mkdir(tmp_path)
         if fig_width:
@@ -112,8 +115,7 @@ class Journalist():
         newest_config = self.__preprocess(config_dict)
         self.report_config.update(newest_config)
 
-    def generate_template(self, template_file='./template.md',title='template',author='Author',append=False):
-
+    def generate_template(self, template_file='./template.md', title='template', author='Author', append=False):
         """Generate a `md` template according to mappings which previously passed to.
 
         The output template will be structed as each variable on a single slide with variable name as its title
@@ -139,7 +141,13 @@ class Journalist():
         if append:
             report_text = open(self.template_file).read() + '\n'
         else:
-            report_text = f'% {title} \n% {author} \n% {{today}}\n\n'
+            report_text = '---\n'
+            if self.zh:
+                report_text += 'documentclass: ctexbeamer\n'
+            report_text += f'title: {title}\n'
+            report_text += f'author: {author}\n'
+            report_text += 'date: \\today{{}}\n'
+            report_text += '---\n'
 
         for k, v in self.var_type.items():
             k_name = '{' + k + '}'
@@ -181,24 +189,26 @@ class Journalist():
         raw_file = os.path.join(self.tmp_path, 'raw_report.md')
         report_name, ext = os.path.splitext(output_file)
         tex_command = f'--listings -H {tex_config_path}'
+        args_list = ""
         if overwrite:
             final_file = output_file
         else:
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
             final_file = f"{report_name}_{timestamp}{ext}"
 
-        report_template_text = open(self.template_file, 'r').read()
-        Path(raw_file).write_text(report_template_text.format(**self.report_config))
+        report_template_text = open(self.template_file, 'r', encoding='utf8').read()
+        Path(raw_file).write_text(report_template_text.format(**self.report_config), encoding='utf8')
 
         if beamer and ext == '.pdf':
             beamer_command = '-t beamer'
         else:
             beamer_command = '-t'
 
-        if use_template_config:
-            args_list = ""
-        else:
+        if not use_template_config:
             args_list = f"-V theme:{theme} -V colortheme:{color_theme} -V aspectratio:{aspectratio}"
+
+        if self.zh:
+            args_list += ' --pdf-engine=xelatex'
 
         command = f'pandoc {beamer_command} {raw_file} {tex_command} {args_list} -s -o {final_file}'
         return_code = os.system(command)

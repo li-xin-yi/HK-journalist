@@ -1,7 +1,8 @@
-% Report template 
-% Author
-% {today}
-
+---
+title: template
+author: Author
+date: \today{{}}
+---
 ### Cover_type
 
 {Cover_type}
