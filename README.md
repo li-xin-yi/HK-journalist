@@ -13,7 +13,7 @@
 
 It is a light and useful Python module, helping you generate a small size, pretty report as PDF slides (or any other format documents which humans can directly read and hand out) each time after your programs finish. All you need to do is to customize a report template using `MarkDown` with variables names used in your Python program and maintain a `dict` to store those variables. Then, A few lines of code added before the end of programs can automatically fetch and display them in the final report file. Also, the codes intended to deal with frequent structures/arguments changes or data source changes can benefit from the package if the report can play a role of 'snapshot' (with timestamp) of each code version.
 
-- documentation: https://hk-journalist.readthedocs.io/en/latest/index.html
+- Documentation: https://hk-journalist.readthedocs.io/en/latest/index.html
 - Slides for sharing: [slides](./slides/slides.pdf)
 
 ## Table of Contents
@@ -23,7 +23,7 @@ It is a light and useful Python module, helping you generate a small size, prett
   * [Run a `Journalist()` in your code to fetch variables](#run-a--journalist----in-your-code-to-fetch-variables)
   * [Invite a journalist to make a big news report](#invite-a-journalist-to-make-a-big-news-report)
 - [I am too lazy to write a `md` template](#i-am-too-lazy-to-write-an--md--template)
-- [Support For zh_CN](#support-for-zh_cn)
+- [Support For zh_CN *(New feature :tada:)*](#support-for-zh_cn)
 - [What will my variables on slides look like?](#what-will-my-variables-on-slides-look-like-)
 - [More examples and instructions](#more-examples-and-instructions)
 - [Tips](#tips)

@@ -93,11 +93,11 @@ Report slides display as below:
 
 ## Final question: What will my variables on slides look like?
 
-All variables pass to `Journalist` via `hear` will display as strings just like what their `__str__` method do.
+All variables pass to `Journalist` via `hear` will display as strings just like what their `__str__` method do.
 
 Except for 4 types with special support:
 
 - `pandas.DataFrame`: -> a 3-line table (`TeX` default style)
-- `matplotlib.axes.SubplotBase` (known as base figure object `ax` in `matplotlib`):  -> a figure print on report (with high quality and small size as `pdf`)
+- `matplotlib.axes.SubplotBase` (known as base figure object `ax` in `matplotlib`):  -> a figure print on report (with high quality and small size as `pdf`)
 - `function`: -> its full definition
 - `list(str)`: -> `len(list)` followed by a sentance with all words concatenated.

@@ -29,9 +29,10 @@ It is a light and useful Python module, helping you generate a small size, prett
    :caption: Home:
 
    Quick Start<source/quick-start.md>
-   Auto Generate Template<source/template-generate.md>
-   Tutorial 1: Run a prophet model on time series<source/tutorial_1.md>
+   Auto Generate Template<source/template-generate.md>
+   Tutorial 1: Run a prophet model on time series<source/tutorial_1.md>
    Tutorial 2: EDA and select feature<source/tutorial_2.md>
+   Tutorial 3: Write templates with Chinese characters<source/tutorial_3.md>
    API<source/hkjournalist.rst>
 
 

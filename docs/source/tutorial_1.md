@@ -1,4 +1,4 @@
-# Tutorial 1: Run a prophet model on time series
+# Tutorial 1: Run a prophet model on time series
 
 - Code and output: [example/1\_prophet\_model\_evalute.py](https://github.com/li-xin-yi/HK-journalist/blob/master/examples/1_prophet_model_evaluate.py)
 - Data and model usage from [`fbprophet` tutorials](https://facebook.github.io/prophet/docs/quick_start.html#python-api)
@@ -53,7 +53,7 @@ model = Prophet(weekly_seasonality=True, yearly_seasonality=True)
 model.add_seasonality('monthly', period=30.5, fourier_order=12, prior_scale=10)
 model.add_seasonality('quarter', period=364.5 / 4, fourier_order=10, prior_scale=5)
 ```
-Seasonalities are import hyper-parameters of a `Prophet` model, which should be recorded every time.
+Seasonalities are import hyper-parameters of a `Prophet` model, which should be recorded every time.
 
 ## Fit this model and plot the prediction
 
@@ -68,7 +68,7 @@ plt.tight_layout()
 config['pred_plot'] = ax
 ```
 
-## Define a custom metric to evaluate model
+## Define a custom metric to evaluate model
 
 And the metric definition should be exposed to others
 
