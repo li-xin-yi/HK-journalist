@@ -172,6 +172,8 @@ Here is a [simple example](./examples/3_zh_CN_support.py) similar to [Quick star
 
 **Note**: make sure `xelatex` is installed properly.
 
+More details can be found in [API Documentation](https://hk-journalist.readthedocs.io/en/latest/source/hkjournalist.html) and [this tutorial](https://hk-journalist.readthedocs.io/en/latest/source/tutorial_3.html).
+
 ## What will my variables on slides look like?
 
 All variables pass to `Journalist` via `hear` will display as strings just like what their `__str__` method does.

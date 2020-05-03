@@ -92,7 +92,7 @@ And the rest part of [`md` template](https://github.com/li-xin-yi/HK-journalist/
 ```{{.python}}
 {sin_func}
 ```
-```
+
 
 ## Turn on `zh`
 
