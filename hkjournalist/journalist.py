@@ -220,7 +220,9 @@ class Journalist():
         args_list += ['-o', final_file]
 
         # command = f'pandoc {beamer_command} {raw_file} {tex_command} {args_list} -s -o {final_file}'
-        proc = subprocess.run(args_list, shell=True, capture_output=True)
+
+        # shell=True sometimes leads to invalid output
+        proc = subprocess.run(args_list,shell=False, capture_output=True)
 
         if proc.returncode == 0:
             print(f'Make a big news! The newest report is now in {final_file}')
