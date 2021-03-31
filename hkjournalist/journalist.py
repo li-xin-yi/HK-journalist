@@ -3,10 +3,12 @@ import os
 import matplotlib
 import inspect
 import matplotlib.pyplot as plt
+import subprocess
 import datetime
 import collections
 from tabulate import tabulate
 from pathlib import Path
+from shutil import rmtree
 import pkg_resources
 
 resource_package = __name__
@@ -158,6 +160,9 @@ class Journalist():
                 title = f"### {k}" + '{{.fragile}}\n\n'
                 content = '```{{.python}}\n' + k_name + '\n```\n\n'
             else:
+                # In case the content is too long, allow multiple frames to display
+                if v == 'list(str)' or v == 'table' or v == 'series':
+                    title = f"### {k}" + '{{.allowframebreaks}}\n\n'
                 content = k_name + '\n\n'
             report_text = report_text + title + content
 
@@ -187,9 +192,10 @@ class Journalist():
         :rtype: str, int
         """
         raw_file = os.path.join(self.tmp_path, 'raw_report.md')
+        output_file = output_file.replace(' ', '-')
         report_name, ext = os.path.splitext(output_file)
-        tex_command = f'--listings -H {tex_config_path}'
-        args_list = ""
+        args_list = ['pandoc', '-s', raw_file, '--listings', '-H', tex_config_path]
+
         if overwrite:
             final_file = output_file
         else:
@@ -200,22 +206,28 @@ class Journalist():
         Path(raw_file).write_text(report_template_text.format(**self.report_config), encoding='utf8')
 
         if beamer and ext == '.pdf':
-            beamer_command = '-t beamer'
+            args_list += ['-t', 'beamer']
         else:
-            beamer_command = '-t'
+            args_list += ['-t', 'latex']
 
         if not use_template_config:
-            args_list = f"-V theme:{theme} -V colortheme:{color_theme} -V aspectratio:{aspectratio}"
+            args_list += ['-V', 'theme:' + theme, '-V', 'colortheme:' + color_theme, '-V',
+                          'aspectratio:' + str(aspectratio)]
 
         if self.zh:
-            args_list += ' --pdf-engine=xelatex'
+            args_list.append('--pdf-engine=xelatex')
 
-        command = f'pandoc {beamer_command} {raw_file} {tex_command} {args_list} -s -o {final_file}'
-        return_code = os.system(command)
+        args_list += ['-o', final_file]
 
-        if return_code == 0:
+        # command = f'pandoc {beamer_command} {raw_file} {tex_command} {args_list} -s -o {final_file}'
+        proc = subprocess.run(args_list, shell=True, capture_output=True)
+
+        if proc.returncode == 0:
             print(f'Make a big news! The newest report is now in {final_file}')
-            return final_file
         else:
-            print(f'Report failed with code {return_code}, please check if params and path correct')
-            return return_code
+            # for debug
+            print(f'Report failed with code {proc.returncode} \n', f'stderr: {proc.stderr.decode("utf8")} \n ',
+                  f'stdout: {proc.stdout.decode("utf8")}')
+
+        if os.path.exists(self.tmp_path):
+            rmtree(self.tmp_path)

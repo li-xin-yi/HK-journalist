@@ -3,7 +3,7 @@ title: template
 author: Author
 date: \today{{}}
 ---
-### Cover_type
+### Cover_type{{.allowframebreaks}}
 
 {Cover_type}
 
@@ -11,15 +11,15 @@ date: \today{{}}
 
 {shape}
 
-### dtypes
+### dtypes{{.allowframebreaks}}
 
 {dtypes}
 
-### skew
+### skew{{.allowframebreaks}}
 
 {skew}
 
-### description
+### description{{.allowframebreaks}}
 
 {description}
 
@@ -33,7 +33,7 @@ date: \today{{}}
 {select_method}
 ```
 
-### features_remain_with_thres_as_70
+### features_remain_with_thres_as_70{{.allowframebreaks}}
 
 {features_remain_with_thres_as_70}
 
