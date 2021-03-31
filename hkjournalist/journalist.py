@@ -170,7 +170,7 @@ class Journalist():
         print(f'New template file is generated in {template_file}')
 
     def report(self, output_file='./final_report.pdf', beamer=True, theme='default', color_theme='seagull',
-               use_template_config=False, overwrite=True, aspectratio=43):
+               use_template_config=False, overwrite=True,aspectratio=43,):
         """
         Generate final pdf (or other format) report using previously heard config dict
 
@@ -188,8 +188,8 @@ class Journalist():
         :type overwrite: bool
         :param aspectratio: aspect ratio of slide page. only valid when `beamer` is turn on and output format is `pdf`
         :type aspectratio: int
-        :return: filename (when build successfully) or error code (if the method fails)
-        :rtype: str, int
+        :return: execution return code (0 if succeed)
+        :rtype: int
         """
         raw_file = os.path.join(self.tmp_path, 'raw_report.md')
         output_file = output_file.replace(' ', '-')
@@ -210,7 +210,7 @@ class Journalist():
         else:
             args_list += ['-t', 'latex']
 
-        if not use_template_config:
+        if beamer and not use_template_config:
             args_list += ['-V', 'theme:' + theme, '-V', 'colortheme:' + color_theme, '-V',
                           'aspectratio:' + str(aspectratio)]
 
@@ -231,3 +231,4 @@ class Journalist():
 
         if os.path.exists(self.tmp_path):
             rmtree(self.tmp_path)
+        return proc.returncode

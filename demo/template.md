@@ -1,4 +1,3 @@
----
 % Hello World
 % Xinyi Li
 % 2019-12-19
