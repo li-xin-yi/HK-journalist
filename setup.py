@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="hkjournalist",
-    version="0.0.6",
+    version="0.0.7",
     author="Xinyi Li",
     author_email="wolixinyi@gmail.com",
     description="Custom Auto Report Generator for Python Program",
