@@ -1,6 +1,6 @@
 % Simple Model Test
 % Author
-% {today}
+% \today{{}}
 
 ---
 
